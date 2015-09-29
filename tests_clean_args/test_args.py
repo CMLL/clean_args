@@ -98,3 +98,23 @@ def test_double_argument_found():
 
     assert args.get_double_value('d') == 999.29
 
+
+def test_double_argument_invalid_double():
+    with pytest.raises(ArgsException) as e:
+        CleanArgs('d##', ['-d', 'InvalidDouble'])
+
+    assert str(e.value) == 'Expected double value but got InvalidDouble.'
+
+
+def test_double_parameter_missing():
+    args = CleanArgs('d##,p*', ['-p', '990'])
+
+    assert args.get_double_value('-d') == 0.0
+
+
+def test_double_parameter_empty():
+    with pytest.raises(ArgsException) as e:
+        CleanArgs('d##', ['-d'])
+
+    assert str(e.value) == 'Expected double value but got None.'
+

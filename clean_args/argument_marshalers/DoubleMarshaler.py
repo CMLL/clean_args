@@ -1,3 +1,5 @@
+from clean_args.args_exception import ArgsException
+
 __author__ = 'cllamach'
 
 
@@ -14,8 +16,13 @@ class DoubleMarshaler(object):
         Set the double value.
         :param value: String
         :return:
-        """  # TODO refactor this.
-        self._double_value = float(value)
+        """
+        try:
+            self._double_value = float(value)
+        except (ValueError, TypeError):
+            raise ArgsException('Expected double value but got {}.'.format(
+                value
+            ))
 
     @staticmethod
     def get_value(argument_marshaler):
@@ -24,4 +31,7 @@ class DoubleMarshaler(object):
         :param argument_marshaler: DoubleMarshaler.
         :return:
         """
-        return argument_marshaler._double_value
+        if argument_marshaler:
+            return argument_marshaler._double_value
+        else:
+            return 0.0
