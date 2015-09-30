@@ -124,3 +124,9 @@ def test_string_list_parameter_found():
 
     assert args.get_string_list_value('l') == ['Hello', 'World']
 
+
+def test_string_list_parameter_separated_by_comma():
+    args = CleanArgs('l[*]', ['-l', 'Hello,World'])
+
+    assert args.get_string_list_value('l') == ['Hello', 'World']
+
