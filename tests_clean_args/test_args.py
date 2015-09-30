@@ -130,3 +130,15 @@ def test_string_list_parameter_separated_by_comma():
 
     assert args.get_string_list_value('l') == ['Hello', 'World']
 
+
+def test_complete_list_of_arguments():
+    args = CleanArgs('l,p*,d#,s##,n[*]', ['-l', '-p', '999', '-d',
+                                          '/home/cllamach', '-s', '100.2',
+                                          '-n', 'Node1,Node2,Node3'])
+
+    assert args.get_double_value('s') == 100.2
+    assert args.get_boolean_value('l')
+    assert args.get_integer_value('p') == 999
+    assert args.get_string_value('d') == '/home/cllamach'
+    assert args.get_string_list_value('n') == ['Node1', 'Node2', 'Node3']
+
