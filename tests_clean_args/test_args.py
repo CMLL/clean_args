@@ -99,7 +99,6 @@ def test_string_invalid_argument():
     assert args.get_string_value('d') == ''
 
 
-
 def test_double_argument_found():
     args = CleanArgs('d##', ['-d', '999.29'])
 
@@ -116,7 +115,7 @@ def test_double_argument_invalid_double():
 def test_double_parameter_missing():
     args = CleanArgs('d##,p*', ['-p', '990'])
 
-    assert args.get_double_value('-d') == 0.0
+    assert args.get_double_value('d') == 0.0
 
 
 def test_double_parameter_empty():
@@ -136,6 +135,12 @@ def test_string_list_parameter_separated_by_comma():
     args = CleanArgs('l[*]', ['-l', 'Hello,World'])
 
     assert args.get_string_list_value('l') == ['Hello', 'World']
+
+
+def test_string_list_parameter_not_found():
+    args = CleanArgs('s[*]', ['-s', 'Super Good'])
+
+    assert args.get_string_list_value('o') == []
 
 
 def test_complete_list_of_arguments():

@@ -32,5 +32,5 @@ class StringListMarshaler(object):
         :param argument_marshaler: StringListMarshaler
         :return:
         """
-        return argument_marshaler._list_value
+        return argument_marshaler and argument_marshaler._list_value or []
 

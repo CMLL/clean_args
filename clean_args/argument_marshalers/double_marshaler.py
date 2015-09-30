@@ -31,7 +31,4 @@ class DoubleMarshaler(object):
         :param argument_marshaler: DoubleMarshaler.
         :return:
         """
-        if argument_marshaler:
-            return argument_marshaler._double_value
-        else:
-            return 0.0
+        return argument_marshaler and argument_marshaler._double_value or 0.0
