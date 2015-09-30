@@ -1,7 +1,7 @@
 from clean_args.args_exception import ArgsException
 from argument_marshalers.boolean_marshaler import BooleanMarshaler
 from argument_marshalers.integer_marshaler import IntegerMarshaler
-from clean_args.argument_marshalers.DoubleMarshaler import DoubleMarshaler
+from clean_args.argument_marshalers.double_marshaler import DoubleMarshaler
 from clean_args.argument_marshalers.list_marshaler import StringListMarshaler
 from clean_args.argument_marshalers.string_marshaler import StringMarshaler
 

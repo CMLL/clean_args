@@ -29,5 +29,5 @@ class StringMarshaler(object):
         :param argument_marshaler:
         :return:
         """
-        return argument_marshaler._string_value
+        return argument_marshaler and argument_marshaler._string_value or ''
 

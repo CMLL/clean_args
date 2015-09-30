@@ -93,6 +93,13 @@ def test_string_argument_not_found():
     assert str(e.value) == 'Expected string but found None.'
 
 
+def test_string_invalid_argument():
+    args = CleanArgs('s#', ['-s', 'Hello'])
+
+    assert args.get_string_value('d') == ''
+
+
+
 def test_double_argument_found():
     args = CleanArgs('d##', ['-d', '999.29'])
 
