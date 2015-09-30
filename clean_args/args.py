@@ -2,6 +2,7 @@ from clean_args.args_exception import ArgsException
 from argument_marshalers.boolean_marshaler import BooleanMarshaler
 from argument_marshalers.integer_marshaler import IntegerMarshaler
 from clean_args.argument_marshalers.DoubleMarshaler import DoubleMarshaler
+from clean_args.argument_marshalers.list_marshaler import StringListMarshaler
 from clean_args.argument_marshalers.string_marshaler import StringMarshaler
 
 __author__ = 'cllamach'
@@ -53,6 +54,8 @@ class CleanArgs(object):
             self._arguments.update({element_id: StringMarshaler()})
         elif element_tail == '##':
             self._arguments.update({element_id: DoubleMarshaler()})
+        elif element_tail == '[*]':
+            self._arguments.update({element_id: StringListMarshaler()})
         else:
             raise ArgsException('{} is not a valid schema value.'.format(
                 element_tail))
@@ -126,3 +129,11 @@ class CleanArgs(object):
         :return:
         """
         return DoubleMarshaler.get_value(self._arguments.get(arg))
+
+    def get_string_list_value(self, arg):
+        """
+        Retrieve the value of the marshaler assigned to the arg.
+        :param arg: String
+        :return:
+        """
+        return StringListMarshaler.get_value(self._arguments.get(arg))

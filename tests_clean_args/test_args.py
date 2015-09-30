@@ -118,3 +118,9 @@ def test_double_parameter_empty():
 
     assert str(e.value) == 'Expected double value but got None.'
 
+
+def test_string_list_parameter_found():
+    args = CleanArgs('l[*]', ['-l', 'Hello World'])
+
+    assert args.get_string_list_value('l') == ['Hello', 'World']
+
